@@ -1,0 +1,695 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* ========== BOTÃO ACESSIBILIDADE ========== */
+.btn-acessibilidade {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #4a00e0;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-acessibilidade:hover {
+    transform: scale(1.1);
+    background: #6c3ce0;
+}
+
+/* ========== MENU ACESSIBILIDADE ========== */
+.menu-acessibilidade {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 999;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
+    min-width: 250px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.menu-acessibilidade.ativo {
+    display: block;
+}
+
+.menu-acessibilidade h3 {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.btn-acess {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #e0e0e0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    text-align: left;
+    color: #333;
+}
+
+.btn-acess:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== CONTAINER PRINCIPAL ========== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.tela {
+    display: none;
+    animation: slideIn 0.5s ease-out;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.botoes-selecao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-agro, .btn-leite {
+    padding: 40px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-agro {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.btn-leite {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn-agro:hover, .btn-leite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.btn-voltar {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.formulario {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-enviar:hover {
+    transform: translateY(-2px);
+}
+
+.resultado {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #667eea;
+}
+
+/* ========== BOTÕES DE AÇÃO ========== */
+.botoes-acoes {
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-planilha {
+    padding: 18px 30px;
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-planilha:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.5);
+}
+
+/* ========== SEÇÃO DA PLANILHA DE VACINAS ========== */
+.secao-vacinas {
+    margin-top: 25px;
+    padding: 25px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 15px;
+    border: 2px solid #4caf50;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.cabecalho-planilha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4caf50;
+}
+
+.cabecalho-planilha h3 {
+    color: #2e7d32;
+    font-size: 1.4rem;
+}
+
+.btn-fechar {
+    background: #f44336;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-fechar:hover {
+    background: #d32f2f;
+    transform: rotate(90deg);
+}
+
+/* ========== CALENDÁRIO DE ORIENTAÇÃO ========== */
+.calendario-orientacao {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.calendario-orientacao h4 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* ========== FORMULÁRIO DE VACINA ========== */
+.form-vacina {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-vacina h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.grid-vacina {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group-vacina {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-vacina label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-group-vacina input,
+.form-group-vacina select {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+}
+
+.form-group-vacina input:focus,
+.form-group-vacina select:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.btn-adicionar {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.btn-adicionar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+/* ========== TABELA DE VACINAS ========== */
+.tabela-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.tabela-container h4 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.busca-vacina {
+    margin-bottom: 15px;
+}
+
+.busca-vacina input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+}
+
+.busca-vacina input:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.tabela-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.tabela-vacinas-registradas {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.tabela-vacinas-registradas th {
+    background: #2196F3;
+    color: white;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.tabela-vacinas-registradas td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+}
+
+.tabela-vacinas-registradas tr:hover {
+    background: #f0f8ff;
+}
+
+.tabela-vacinas-registradas tr:last-child td {
+    border-bottom: none;
+}
+
+.btn-excluir {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn-excluir:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
+}
+
+.sem-registros {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-size: 1rem;
+}
+
+/* ========== OUTRAS SEÇÕES ========== */
+.alerta {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 5px;
+}
+
+.info-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: #d1ecf1;
+    border-left: 4px solid #17a2b8;
+    border-radius: 5px;
+}
+
+.controle-cio {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e8eaf6;
+    border-radius: 8px;
+}
+
+.btn-pequeno {
+    padding: 10px 20px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ========== MODO ESCURO ========== */
+body.modo-escuro {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.modo-escuro .card {
+    background: #2d2d44;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .form-group label {
+    color: #e0e0e0;
+}
+
+body.modo-escuro .form-group input,
+body.modo-escuro .form-group select,
+body.modo-escuro .form-group textarea {
+    background: #3d3d5c;
+    border-color: #4d4d6e;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .resultado {
+    background: #3d3d5c;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .alerta {
+    background: #4a4a2a;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .info-box {
+    background: #2a4a4a;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .controle-cio {
+    background: #3d3d5c;
+}
+
+body.modo-escuro .menu-acessibilidade {
+    background: #2d2d44;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .menu-acessibilidade h3 {
+    color: #e0e0e0;
+}
+
+body.modo-escuro .btn-acess {
+    background: #3d3d5c;
+    color: #e0e0e0;
+    border-color: #4d4d6e;
+}
+
+body.modo-escuro .btn-voltar {
+    background: #4d4d6e;
+}
+
+body.modo-escuro .secao-vacinas {
+    background: linear-gradient(135deg, #2d3d2d 0%, #1d2d1d 100%);
+    border-color: #3d5d3d;
+}
+
+body.modo-escuro .cabecalho-planilha {
+    border-bottom-color: #3d5d3d;
+}
+
+body.modo-escuro .cabecalho-planilha h3 {
+    color: #81c784;
+}
+
+body.modo-escuro .calendario-orientacao {
+    background: #3d3d5c;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .form-vacina {
+    background: #3d3d5c;
+}
+
+body.modo-escuro .form-vacina h4 {
+    color: #e0e0e0;
+}
+
+body.modo-escuro .form-group-vacina label {
+    color: #ccc;
+}
+
+body.modo-escuro .form-group-vacina input,
+body.modo-escuro .form-group-vacina select {
+    background: #4d4d6e;
+    border-color: #5d5d7e;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .tabela-container {
+    background: #3d3d5c;
+}
+
+body.modo-escuro .tabela-container h4 {
+    color: #e0e0e0;
+}
+
+body.modo-escuro .busca-vacina input {
+    background: #4d4d6e;
+    border-color: #5d5d7e;
+    color: #e0e0e0;
+}
+
+body.modo-escuro .tabela-vacinas-registradas td {
+    color: #ccc;
+    border-bottom-color: #5d5d7e;
+}
+
+body.modo-escuro .tabela-vacinas-registradas tr:hover {
+    background: #4d4d6e;
+}
+
+/* ========== ANIMAÇÕES ========== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .grid-vacina {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabela-scroll {
+        max-height: 300px;
+    }
+    
+    .tabela-vacinas-registradas {
+        font-size: 0.85rem;
+    }
+    
+    .tabela-vacinas-registradas th,
+    .tabela-vacinas-registradas td {
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 600px) {
+    .botoes-selecao {
+        grid-template-columns: 1fr;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .btn-acessibilidade {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+    
+    .menu-acessibilidade {
+        top: 65px;
+        right: 10px;
+        min-width: 220px;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+}

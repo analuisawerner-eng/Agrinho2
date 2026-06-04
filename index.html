@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroGestor - Sistema de Gestão Rural</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Botão de Acessibilidade -->
+    <button id="btnAcessibilidade" class="btn-acessibilidade" onclick="toggleAcessibilidade()" aria-label="Menu de Acessibilidade">
+        ♿
+    </button>
+
+    <!-- Menu de Acessibilidade -->
+    <div id="menuAcessibilidade" class="menu-acessibilidade">
+        <h3>🌟 Acessibilidade</h3>
+        <button onclick="aumentarFonte()" class="btn-acess" title="Aumentar Fonte">
+            A➕ Aumentar Fonte
+        </button>
+        <button onclick="diminuirFonte()" class="btn-acess" title="Diminuir Fonte">
+            A➖ Diminuir Fonte
+        </button>
+        <button onclick="toggleContraste()" class="btn-acess" id="btnContraste" title="Modo Claro/Escuro">
+            🌓 Modo Escuro
+        </button>
+        <button onclick="iniciarLeitura()" class="btn-acess" title="Iniciar Leitura por Voz">
+            🔊 Ler Página
+        </button>
+        <button onclick="pararLeitura()" class="btn-acess" title="Parar Leitura">
+            🔇 Parar Leitura
+        </button>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>🌾 AgroGestor</h1>
+            <p>Sistema Inteligente de Gestão Rural</p>
+        </header>
+
+        <!-- Tela Inicial - Seleção do Tipo de Produção -->
+        <div id="telaInicial" class="tela ativa">
+            <div class="card">
+                <h2>Bem-vindo, Produtor!</h2>
+                <p>Selecione sua área de atuação:</p>
+                <div class="botoes-selecao">
+                    <button onclick="selecionarProducao('agro')" class="btn-agro">
+                        🌱 Agricultura
+                    </button>
+                    <button onclick="selecionarProducao('leite')" class="btn-leite">
+                        🐄 Pecuária Leiteira
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Agricultura -->
+        <div id="telaAgro" class="tela">
+            <div class="card">
+                <h2>🌱 Gestão Agrícola</h2>
+                <button onclick="voltarInicio()" class="btn-voltar">← Voltar</button>
+                
+                <form id="formAgro" class="formulario">
+                    <div class="form-group">
+                        <label>📍 Localização da Propriedade:</label>
+                        <input type="text" id="localizacao" required placeholder="Cidade, Estado">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🌿 Tipo de Manejo:</label>
+                        <select id="tipoManejo" required>
+                            <option value="">Selecione...</option>
+                            <option value="convencional">Convencional</option>
+                            <option value="organico">Orgânico</option>
+                            <option value="agroecologico">Agroecológico</option>
+                            <option value="plantio_direto">Plantio Direto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🚜 Implementos Disponíveis:</label>
+                        <textarea id="implementos" rows="3" placeholder="Ex: Trator, Arado, Pulverizador..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🌾 O que está plantado atualmente:</label>
+                        <textarea id="plantacaoAtual" rows="3" required placeholder="Ex: Soja, Milho, Feijão..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-enviar">📊 Gerar Recomendações</button>
+                </form>
+                
+                <div id="resultadoAgro" class="resultado" style="display: none;">
+                    <h3>📋 Recomendações Personalizadas:</h3>
+                    <div id="recomendacoesAgro"></div>
+                    <div id="descarteAgrotoxicos" class="alerta"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Pecuária Leiteira -->
+        <div id="telaLeite" class="tela">
+            <div class="card">
+                <h2>🐄 Gestão Pecuária Leiteira</h2>
+                <button onclick="voltarInicio()" class="btn-voltar">← Voltar</button>
+                
+                <form id="formLeite" class="formulario">
+                    <div class="form-group">
+                        <label>🐮 Número de Animais:</label>
+                        <input type="number" id="numAnimais" required min="1" placeholder="Quantidade total">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🏗️ Estrutura do Tratador/Leitaria:</label>
+                        <select id="estrutura" required>
+                            <option value="">Selecione...</option>
+                            <option value="manual">Ordenha Manual</option>
+                            <option value="mecanica_balao">Ordenha Mecânica Balão</option>
+                            <option value="mecanica_canalizada">Ordenha Mecânica Canalizada</option>
+                            <option value="robotica">Ordenha Robotizada</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📍 Seu Estado:</label>
+                        <select id="estado" required>
+                            <option value="">Selecione o Estado...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-enviar">🐄 Gerenciar Rebanho</button>
+                </form>
+                
+                <div id="resultadoLeite" class="resultado" style="display: none;">
+                    <h3>📊 Controle do Rebanho:</h3>
+                    <div id="infoRebanho"></div>
+                    
+                    <!-- BOTÃO PARA PLANILHA DE VACINAS -->
+                    <div class="botoes-acoes">
+                        <button onclick="abrirPlanilhaVacinas()" class="btn-planilha">
+                            💉 Planilha de Controle de Vacinas
+                        </button>
+                    </div>
+                    
+                    <div id="secaoVacinas" class="secao-vacinas" style="display: none;">
+                        <div class="cabecalho-planilha">
+                            <h3>📋 Planilha de Vacinas do Rebanho</h3>
+                            <button onclick="fecharPlanilhaVacinas()" class="btn-fechar">✕ Fechar</button>
+                        </div>
+                        
+                        <!-- Calendário de orientação -->
+                        <div id="calendarioOrientacao" class="calendario-orientacao"></div>
+                        
+                        <!-- Formulário para adicionar vacina -->
+                        <div class="form-vacina">
+                            <h4>➕ Registrar Nova Vacina</h4>
+                            <div class="grid-vacina">
+                                <div class="form-group-vacina">
+                                    <label>🔢 Nº do Brinco:</label>
+                                    <input type="text" id="brincoAnimal" placeholder="Ex: 001, 002..." required>
+                                </div>
+                                <div class="form-group-vacina">
+                                    <label>💉 Tipo de Vacina:</label>
+                                    <select id="tipoVacina" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Febre Aftosa">Febre Aftosa</option>
+                                        <option value="Brucelose">Brucelose</option>
+                                        <option value="Raiva">Raiva</option>
+                                        <option value="Clostridioses">Clostridioses</option>
+                                        <option value="IBR/BVD/Leptospirose">Complexo Reprodutivo</option>
+                                        <option value="Mastite">Mastite</option>
+                                        <option value="Outra">Outra</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-vacina">
+                                    <label>📅 Data:</label>
+                                    <input type="date" id="dataVacina" required>
+                                </div>
+                                <div class="form-group-vacina">
+                                    <label>📝 Observação:</label>
+                                    <input type="text" id="obsVacina" placeholder="Lote, dose, etc.">
+                                </div>
+                            </div>
+                            <button onclick="adicionarVacina()" class="btn-adicionar">✅ Registrar Vacina</button>
+                        </div>
+                        
+                        <!-- Tabela de vacinas registradas -->
+                        <div class="tabela-container">
+                            <h4>📋 Histórico de Vacinas Registradas</h4>
+                            <div class="busca-vacina">
+                                <input type="text" id="buscaBrinco" placeholder="🔍 Buscar por número do brinco..." onkeyup="filtrarVacinas()">
+                            </div>
+                            <div class="tabela-scroll">
+                                <table class="tabela-vacinas-registradas" id="tabelaVacinas">
+                                    <thead>
+                                        <tr>
+                                            <th>Nº Brinco</th>
+                                            <th>Vacina</th>
+                                            <th>Data</th>
+                                            <th>Observação</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="corpoTabelaVacinas">
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; color: #999;">
+                                                Nenhuma vacina registrada ainda
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="controle-cio">
+                        <h4>📅 Controle de Cio e Reprodução</h4>
+                        <input type="date" id="dataCio" placeholder="Data do Cio">
+                        <button onclick="registrarCio()" class="btn-pequeno">Registrar Cio</button>
+                        <div id="calendarioReprodutivo"></div>
+                    </div>
+                    
+                    <div id="notificacoes" class="alerta"></div>
+                    <div id="higieneEquipamentos" class="info-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
